@@ -1,0 +1,62 @@
+A tool for training, saving and printing diagnostics from a classifier on vectors.
+--help TRUE|FALSE
+  Print this command line option usage information.  Give argument of TRUE for longer documentation
+  Default is false
+--prefix-code 'JAVA CODE'
+  Java code you want run before any other interpreted code.  Note that the text is interpreted without modification, so unlike some other Java code options, you need to include any necessary 'new's when creating objects.
+  Default is null
+--config FILE
+  Read command option values from a file
+  Default is null
+--report [train|test|validation]:[accuracy|f1:label|confusion|raw]
+  
+  Default is test:accuracy test:confusion train:accuracy
+--trainer ClassifierTrainer constructor
+  Java code for the constructor used to create a ClassifierTrainer.  If no '(' appears, then "new " will be prepended and "Trainer()" will be appended.You may use this option mutiple times to compare multiple classifiers.
+  Default is new NaiveBayesTrainer()
+--output-classifier FILENAME
+  The filename in which to write the classifier after it has been trained.
+  Default is classifier.mallet
+--input FILENAME
+  The filename from which to read the list of training instances.  Use - for stdin.
+  Default is text.vectors
+--training-file FILENAME
+  Read the training set instance list from this file. If this is specified, the input file parameter is ignored
+  Default is text.vectors
+--testing-file FILENAME
+  Read the test set instance list to this file. If this option is specified, the training-file parameter must be specified and  the input-file parameter is ignored
+  Default is text.vectors
+--validation-file FILENAME
+  Read the validation set instance list to this file.If this option is specified, the training-file parameter must be specified and the input-file parameter is ignored
+  Default is text.vectors
+--training-portion DECIMAL
+  The fraction of the instances that should be used for training.
+  Default is 1.0
+--validation-portion DECIMAL
+  The fraction of the instances that should be used for validation.
+  Default is 0.0
+--unlabeled-portion DECIMAL
+  The fraction of the training instances that should have their labels hidden.  Note that these are taken out of the training-portion, not allocated separately.
+  Default is 0.0
+--random-seed INTEGER
+  The random seed for randomly selecting a proportion of the instance list for training
+  Default is 0
+--num-trials INTEGER
+  The number of random train/test splits to perform
+  Default is 1
+--classifier-evaluator CONSTRUCTOR
+  Java code for constructing a ClassifierEvaluating object
+  Default is null
+--verbosity INTEGER
+  The level of messages to print: 0 is silent, 8 is most verbose. Levels 0-8 correspond to the java.logger predefined levels off, severe, warning, info, config, fine, finer, finest, all. The default value is taken from the mallet logging.properties file, which currently defaults to INFO level (3)
+  Default is -1
+--noOverwriteProgressMessages true|false
+  Suppress writing-in-place on terminal for progess messages - repetitive messages of which only the latest is generally of interest
+  Default is false
+--cross-validation INT
+  The number of folds for cross-validation (DEFAULT=0).
+  Default is 0
+Exception in thread "main" java.lang.IllegalArgumentException: Unrecognized option 6: maxent.stdout
+	at cc.mallet.util.CommandOption$List.process(CommandOption.java:344)
+	at cc.mallet.util.CommandOption.process(CommandOption.java:146)
+	at cc.mallet.classify.tui.Vectors2Classify.main(Vectors2Classify.java:219)
